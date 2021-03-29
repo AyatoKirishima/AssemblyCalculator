@@ -22,6 +22,7 @@ DONNEE_D segment
 	_r_mulD			DB  	'   n1 x n2 = $'
 	_r_divD			DB  	'   n1 / n2 = $'
 	_q_dz			DB	    'Erreur : Division par zero$'
+	_fished			DB		10,'			  ___======____=---=)',10,'			/T            \_--===)',10,'			L \ (@)   \~    \_-==)',10,'			  \      / )J≈    \-=)',10,'			  \\___/  )JJ≈    \)',10,'			   \_____/JJJ≈      \',10,'			  / \  , \J≈≈      \',10,'			  (-\)\=|  \≈~        L__',10,'			  (\\)  ( -\)_            ==__',10,'			   \V    \-\) ===_____  J\   \\',10,'  			       \V)     \_) \   JJ J\)',10,'			                      /J JT\JJJJ)',10,'			                      (JJJ| \UUU)',10,'			                      (UU)	',10,'				              ___',10,'				You got fished !			',10							
 
 	
 	_quit_D			DB	    '  > Quitter (o/n)? $'
@@ -349,6 +350,9 @@ PROG_DIVISION_D PROC NEAR
 		JNE     PDIv_overDIvZero
 		LEA     DX,_q_dz
 		MOV     AH,9
+		INT 	21H
+		LEA 	DX,_fished
+		MOV		AH,9
 		INT     21h
 		JMP     PDIv_fin
 	Pdiv_overdivZero: ;calcul des résultats
