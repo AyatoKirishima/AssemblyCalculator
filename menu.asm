@@ -9,8 +9,10 @@ PILE SEGMENT PARA STACK 'PILE'
         DW 512 DUP(00)                                                  ;DW = Allocates and optionally initializes a word (2 bytes) of storage for each initializer. Can also be used as a type specifier anywhere a type is legal. DW is a synonym of WORD.
 PILE  ENDS
 
-DONNEE SEGMENT															;Partie affichage
-	_main_menu			DB	    ' 1: Decimal',10,' 2: Hexadecimal ',10,' Taper le numero de votre operation: $'
+DONNEE SEGMENT		
+_fish		DB		'			  ___======____=---=)',10,'			/T            \_--===)',10,'			L \ (@)   \~    \_-==)',10,'			  \      / )J≈    \-=)',10,'			  \\___/  )JJ≈    \)',10,'			   \_____/JJJ≈      \',10,'			  / \  , \J≈≈      \',10,'			  (-\)\=|  \≈~        L__',10,'			  (\\)  ( -\)_            ==__',10,'			   \V    \-\) ===_____  J\   \\',10,'  			       \V)     \_) \   JJ J\)',10,'			                      /J JT\JJJJ)',10,'			                      (JJJ| \UUU)',10,'			                      (UU)	',10,'				              ___',10,'				Poisson d avril !!			',10							
+;Partie affichage
+	_main_menu			DB	    ' 1: Decimal',10,' 2: Hexadecimal ',10,' Taper le numero de votre operation: $',10
 	_nope				DB		'nope'
 	%INCL
 	;INCLUDE double.asm
@@ -36,7 +38,12 @@ CODE    SEGMENT
 			MOV	        AX,DONNEE 										;On initialise le segment DONNEE
 			MOV	        DS,AX
 		;Ici, c'est l'affichage du menu qui est concerné
-		_p_main_menu:;afichage du menu			
+		_p_main_menu:
+			;Affichage poisson
+				MOV		AH,9
+				LEA		DX,_fish
+				INT 	21H
+			;affichage du menu			
 				MOV         AH,9
 				LEA         DX,_main_menu
 				INT         21H
