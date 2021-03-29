@@ -329,12 +329,6 @@ CODE    SEGMENT
 			INT 	21H
 			CALL 	SCANINT 
             CMP     DX,0                                                  ;On compare DX à 0
-        ;    JE      _message_erreur                                         ;Si DX = 0 on jump à l'étiquette _message_erreur
-        ;    _message_erreur :                                               ;On définit l'étiquette _message_erreur
-        ;        LEA     DX,_error                                           ;On affiche le message d'erreur
-        ;        MOV     AH,9                                              
-        ;        INT     21H                                                 ;On stoppe ici
-        ;        JMP     _P_REPEAT                                           ;Après ça, on demande si on souhaite refaire un calcul
 			CALL 	RETURN
 		;Affichage résultat et "traitement"
 			LEA 	DX,_r_div 												;On affiche le message _r_div avec l'interruption 9
