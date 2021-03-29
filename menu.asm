@@ -14,8 +14,8 @@ _fish		DB		'			  ___======____=---=)',10,'			/T            \_--===)',10,'			L \ 
 ;Partie affichage
 	_main_menu			DB	    ' 1: Decimal',10,' 2: Hexadecimal ',10,' Taper le numero de votre operation: $',10
 	_nope				DB		'nope'
-	%INCL
-	;INCLUDE double.asm
+	;%INCL
+	;INCLUDE decimal.asm
 DONNEE  ENDS
 
 CODE    SEGMENT
@@ -64,6 +64,7 @@ CODE    SEGMENT
 		_p_hexadecimal:
 				CMP         AL,'2'										;Si le nombre entré est > 2
 				JNE         _p_main_menu                						;On va à l'étiquette du menu suivante
+				;%INCL
 				;CALL        PROG_HEXA							;Sinon, on lance le programme de soustraction
 	
 		_p_end:
