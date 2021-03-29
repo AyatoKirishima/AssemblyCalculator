@@ -25,6 +25,7 @@ DONNEE SEGMENT															;Partie affichage
 	_r_mul			DB  	'   n1 x n2 = $'
 	_r_div			DB  	'   n1 / n2 = $'
 	_error          DB      10,' Erreur division par 0 $',10
+	_fished			DB		10,'			  ___======____=---=)',10,'			/T            \_--===)',10,'			L \ (@)   \~    \_-==)',10,'			  \      / )J≈    \-=)',10,'			  \\___/  )JJ≈    \)',10,'			   \_____/JJJ≈      \',10,'			  / \  , \J≈≈      \',10,'			  (-\)\=|  \≈~        L__',10,'			  (\\)  ( -\)_            ==__',10,'			   \V    \-\) ===_____  J\   \\',10,'  			       \V)     \_) \   JJ J\)',10,'			                      /J JT\JJJJ)',10,'			                      (JJJ| \UUU)',10,'			                      (UU)	',10,'				              ___',10,'				You got fished !			',10							
 	_quit			DB  	10,'  > Quitter (o/n)? $'
 	_ascii 			DB	    '0123456789ABCDEF'
     ;10 = retour à la ligne = \n
@@ -322,15 +323,27 @@ CODE    SEGMENT
 			CALL 	SCANINT 												;Saisie de la 1ere valeur 
 			MOV 	CX,BX    												;On sauvegarde la valeur saisie dans cx
 			CALL 	RETURN 
-		;Le 2e nombre est stocké dans DX
+		;Le 2e nombre est stocké dans BX
 			LEA 	DX,_qn2 												;Saisie de la 2e valeur 
 			MOV 	AH,9
             ;MOV    AH,9
 			INT 	21H
 			CALL 	SCANINT 
-            CMP     DX,0                                                  ;On compare DX à 0
+           ; CMP     DX,0                                                  ;On compare DX à 0
 			CALL 	RETURN
+		;DIv by zero
+			CMP     BX,0
+			JNE     _notDiv0
+			LEA     DX,_error
+			MOV     AH,9
+			INT 	21H
+			LEA 	DX,_fished
+			MOV		AH,9
+			INT     21h
+			;JMP     PDIv_fin
+
 		;Affichage résultat et "traitement"
+		_notDiv0:
 			LEA 	DX,_r_div 												;On affiche le message _r_div avec l'interruption 9
 			MOV 	AH,9
 			INT 	21H
