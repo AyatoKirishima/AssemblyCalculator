@@ -24,7 +24,7 @@ DONNEE SEGMENT															;Partie affichage
 	_r_sub			DB  	'   n1 - n2 = $'
 	_r_mul			DB  	'   n1 x n2 = $'
 	_r_div			DB  	'   n1 / n2 = $'
-	_error          DB      10,' Erreur division par 0 $'
+	_error          DB      10,' Erreur division par 0 $',10
 	_quit			DB  	10,'  > Quitter (o/n)? $'
 	_ascii 			DB	    '0123456789ABCDEF'
     ;10 = retour à la ligne = \n
@@ -325,14 +325,14 @@ CODE    SEGMENT
 		;Le 2e nombre est stocké dans DX
 			LEA 	DX,_qn2 												;Saisie de la 2e valeur 
 			MOV 	AH,9
-            ;MOV     AH,9
+            ;MOV    AH,9
 			INT 	21H
 			CALL 	SCANINT 
-            CMP     DX,'0'                                                  ;On compare DX à 0
+            CMP     DX,0                                                  ;On compare DX à 0
             JE      _message_erreur                                         ;Si DX = 0 on jump à l'étiquette _message_erreur
             _message_erreur :                                               ;On définit l'étiquette _message_erreur
                 LEA     DX,_error                                           ;On affiche le message d'erreur
-                MOV     AH,9                                                
+                MOV     AH,9                                              
                 INT     21H                                                 ;On stoppe ici
                 JMP     _P_REPEAT                                           ;Après ça, on demande si on souhaite refaire un calcul
 			CALL 	RETURN
