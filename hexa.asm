@@ -340,7 +340,7 @@ CODE    SEGMENT
 			LEA 	DX,_fished
 			MOV		AH,9
 			INT     21h
-			;JMP     PDIv_fin
+			JMP     _fin
 
 		;Affichage résultat et "traitement"
 		_notDiv0:
@@ -354,7 +354,7 @@ CODE    SEGMENT
 			MOV 	DX,AX 													;On stocke le résultat de la division dans DX
 			CALL 	PRINTINT 												;On utilise PRINTINT pour afficher le résultat
 			CALL 	RETURN 
-		
+		_fin:
 		POP 	DX  														;On récupère les valeurs des registres DX,CX,BX et AX 
 		POP 	CX
 		POP 	BX
