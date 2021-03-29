@@ -65,7 +65,7 @@ CODE    SEGMENT
 				CMP         AL,'2'										;Si le nombre entré est > 2
 				JNE         _p_main_menu                						;On va à l'étiquette du menu suivante
 				;%INCL
-				;CALL       decimal.asm							;Sinon, on lance le programme de soustraction
+				;CALL       subprogram_decimal							
 	
 		_p_end:
 			MOV			AX,4C00H ;Retour au dos
