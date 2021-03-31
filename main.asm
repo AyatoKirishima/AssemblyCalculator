@@ -14,7 +14,23 @@ DONNEE SEGMENT
 ;Partie affichage
     _fish		DB		'			  ___======____=---=)',10,'			/T            \_--===)',10,'			L \ (@)   \~    \_-==)',10,'			  \      / )J≈    \-=)',10,'			  \\___/  )JJ≈    \)',10,'			   \_____/JJJ≈      \',10,'			  / \  , \J≈≈      \',10,'			  (-\)\=|  \≈~        L__',10,'			  (\\)  ( -\)_            ==__',10,'			   \V    \-\) ===_____  J\   \\',10,'  			       \V)     \_) \   JJ J\)',10,'			                      /J JT\JJJJ)',10,'			                      (JJJ| \UUU)',10,'			                      (UU)	',10,'				              ___',10,'				Poisson d avril !!			',10							
 	_main_menu			DB	    ' 1: Decimal',10,' 2: Hexadecimal ',10,' Taper le numero de votre operation: $',10
-	;_nope				DB		'nope'
+	_menu_D			DB	' 1:(+) 2:(-) 3:(x) 4:(/)',10,' Entrez le numero de votre operation: $'
+	
+	_qn1D			DB  	'   n1 = $'
+	_qn2D			DB  	'   n2 = $'
+	_r_addD			DB  	'   n1 + n2 = $'
+	_r_subD			DB  	'   n1 - n2 = $'
+	_r_mulD			DB  	'   n1 x n2 = $'
+	_r_divD			DB  	'   n1 / n2 = $'
+	_q_dz			DB	    'Erreur : Division par zero$'
+	_fished			DB		10,'			  ___======____=---=)',10,'			/T            \_--===)',10,'			L \ (@)   \~    \_-==)',10,'			  \      / )J≈    \-=)',10,'			  \\___/  )JJ≈    \)',10,'			   \_____/JJJ≈      \',10,'			  / \  , \J≈≈      \',10,'			  (-\)\=|  \≈~        L__',10,'			  (\\)  ( -\)_            ==__',10,'			   \V    \-\) ===_____  J\   \\',10,'  			       \V)     \_) \   JJ J\)',10,'			                      /J JT\JJJJ)',10,'			                      (JJJ| \UUU)',10,'			                      (UU)	',10,'				              ___',10,'				You got fished !			',10							
+
+	
+	_quit_D			DB	    '  > Quitter (o/n)? $'
+	ok		        DB 	    13
+	del		        DB	    8
+	delete	        DB	    8,' ',8,'$'
+    ;_nope				DB		'nope'
 	;%INCL
 
 	;start:
