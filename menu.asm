@@ -65,7 +65,7 @@ CODE    SEGMENT
 				CMP         AL,'2'										;Si le nombre entré est > 2
 				JNE         _p_main_menu                						;On va à l'étiquette du menu suivante
 				;%INCL
-				CALL       subprogram_decimal
+				CALL       decimal.asm
 				RET							
 	
 		_p_end:
