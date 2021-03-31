@@ -39,10 +39,10 @@ CODE    SEGMENT
 			MOV	        DS,AX
 		;Ici, c'est l'affichage du menu qui est concerné
 		_p_main_menu:
-			;Affichage poisson
-				MOV		AH,9
-				LEA		DX,_fish
-				INT 	21H
+			;fish
+			;	MOV		AH,9
+			;	LEA		DX,_fish
+			;	INT 	21H
 			;affichage du menu			
 				MOV         AH,9
 				LEA         DX,_main_menu
@@ -65,8 +65,8 @@ CODE    SEGMENT
 				CMP         AL,'2'										;Si le nombre entré est > 2
 				JNE         _p_main_menu                						;On va à l'étiquette du menu suivante
 				;%INCL
-				CALL       decimal.asm
-				RET							
+				;CALL       decimal.asm
+				;RET							
 	
 		_p_end:
 			MOV			AX,4C00H ;Retour au dos
