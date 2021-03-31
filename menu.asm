@@ -44,7 +44,7 @@ CODE    SEGMENT
 		RET																;quit procedure
 	RETURN_MAIN ENDP															;fin de procedure
 
-		_p_main_menu:
+		_main_menu
 			;fish
 			;	MOV		AH,9
 			;	LEA		DX,_fish
@@ -60,7 +60,7 @@ DEBmenu:
 				INT         21H
 				CALL        RETURN_MAIN
 			;Puis on teste la selection pour vérifier que l'utilisateur n'entre pas n'importe quoi ._.
-		_p_decimal:
+		_decimal:
 				CMP         AL,'1'										;Si le nombre entré est > 1
 				JNE         _p_hexadecimal						            ;On va à l'étiquette du menu suivante
 				INCLUDE decimal.asm
