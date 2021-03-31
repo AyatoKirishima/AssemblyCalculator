@@ -62,7 +62,7 @@ DEBmenu:
 			;Puis on teste la selection pour vérifier que l'utilisateur n'entre pas n'importe quoi ._.
 		_decimal:
 				CMP         AL,'1'										;Si le nombre entré est > 1
-				JNE         _p_hexadecimal						            ;On va à l'étiquette du menu suivante
+				JNE         _hexadecimal						            ;On va à l'étiquette du menu suivante
 				;INCLUDE decimal.asm
 				;INCLUDE     D:\Projet assembleur\double.asm
 				;MOV     AH,9
@@ -70,7 +70,7 @@ DEBmenu:
 				;INT     21h
 		_p_hexadecimal:
 				CMP         AL,'2'										;Si le nombre entré est > 2
-				JNE         _p_main_menu                						;On va à l'étiquette du menu suivante
+				JNE         _main_menu                						;On va à l'étiquette du menu suivante
 				;INCLUDE HEXA.ASM
 				;CALL       decimal.asm
 				;RET				

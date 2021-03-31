@@ -81,7 +81,7 @@ DEBmenu:
 				;INT     21h
 		_p_hexadecimal:
 				CMP         AL,'2'										;Si le nombre entré est > 2
-				JNE         _p_main_menu                						;On va à l'étiquette du menu suivante
+				JNE         _main_menu                						;On va à l'étiquette du menu suivante
 				;INCLUDE HEXA.ASM
 				;CALL       decimal.asm
 				;RET				
