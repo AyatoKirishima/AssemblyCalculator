@@ -13,7 +13,7 @@ DONNEE SEGMENT
 _fish		DB		'			  ___======____=---=)',10,'			/T            \_--===)',10,'			L \ (@)   \~    \_-==)',10,'			  \      / )J≈    \-=)',10,'			  \\___/  )JJ≈    \)',10,'			   \_____/JJJ≈      \',10,'			  / \  , \J≈≈      \',10,'			  (-\)\=|  \≈~        L__',10,'			  (\\)  ( -\)_            ==__',10,'			   \V    \-\) ===_____  J\   \\',10,'  			       \V)     \_) \   JJ J\)',10,'			                      /J JT\JJJJ)',10,'			                      (JJJ| \UUU)',10,'			                      (UU)	',10,'				              ___',10,'				Poisson d avril !!			',10							
 ;Partie affichage
 	_main_menu			DB	    ' 1: Decimal',10,' 2: Hexadecimal ',10,' Taper le numero de votre operation: $',10
-	_nope				DB		'nope'
+	;_nope				DB		'nope'
 	;%INCL
 	INCLUDE decimal.asm
 DONNEE  ENDS
@@ -43,6 +43,7 @@ CODE    SEGMENT
 			;	MOV		AH,9
 			;	LEA		DX,_fish
 			;	INT 	21H
+			
 			;affichage du menu			
 				MOV         AH,9
 				LEA         DX,_main_menu
@@ -54,19 +55,18 @@ CODE    SEGMENT
 			;Puis on teste la selection pour vérifier que l'utilisateur n'entre pas n'importe quoi ._.
 		_p_decimal:
 				CMP         AL,'1'										;Si le nombre entré est > 1
-				JNE         _p_hexadecimal
-				;%INCL							            ;On va à l'étiquette du menu suivante
-				;INCLUDE double.asm
+				JNE         _p_hexadecimal						            ;On va à l'étiquette du menu suivante
+				;INCLUDE decimal.asm
 				;INCLUDE     D:\Projet assembleur\double.asm
-				MOV     AH,9
-				LEA     DX, _nope
+				;MOV     AH,9
+				;LEA     DX, _nope
 				INT     21h
 		_p_hexadecimal:
 				CMP         AL,'2'										;Si le nombre entré est > 2
 				JNE         _p_main_menu                						;On va à l'étiquette du menu suivante
 				;%INCL
 				;CALL       decimal.asm
-				;RET							
+				;RET				
 	
 		_p_end:
 			MOV			AX,4C00H ;Retour au dos
