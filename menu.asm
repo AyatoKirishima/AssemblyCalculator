@@ -15,12 +15,25 @@ _fish		DB		'			  ___======____=---=)',10,'			/T            \_--===)',10,'			L \ 
 	_main_menu			DB	    ' 1: Decimal',10,' 2: Hexadecimal ',10,' Taper le numero de votre operation: $',10
 	;_nope				DB		'nope'
 	;%INCL
-	INCLUDE decimal.asm
+
+	;start:
+	;INCLUDE decimal.asm
+	;INCLUDE hexa.asm
+	;JMP start
 DONNEE  ENDS
 
 CODE    SEGMENT
 ;-----------------------------------------------------------------------PROCEDURE DE RETOUR A LA LIGNE	
-	RETURN PROC NEAR
+	PROG_MAIN PROC FAR
+		ASSUME CS:code,DS:DONNEE,SS:pile
+		; Initialisation
+			PUSH CS
+			PUSH 0
+			MOV	        AX,DONNEE 										;On initialise le segment DONNEE
+			MOV	        DS,AX
+			JMP DEBmenu
+		;Ici, c'est l'affichage du menu qui est concerné
+	RETURN_MAIN PROC FAR
 		PUSH        AX													;save the register value, insert in order
 		PUSH        DX													;save the register value, insert in order
 		MOV         DL,10
@@ -29,15 +42,8 @@ CODE    SEGMENT
 		POP         DX													;take back reg value, take from reverse because push POP function is stack
 		POP         AX													;take back reg value, take from reverse because push POP function is stacks
 		RET																;quit procedure
-	RETURN ENDP															;fin de procedure
+	RETURN_MAIN ENDP															;fin de procedure
 
-
-	PROG_MAIN PROC NEAR
-		ASSUME CS:code,DS:DONNEE,SS:pile
-		; Initialisation
-			MOV	        AX,DONNEE 										;On initialise le segment DONNEE
-			MOV	        DS,AX
-		;Ici, c'est l'affichage du menu qui est concerné
 		_p_main_menu:
 			;fish
 			;	MOV		AH,9
@@ -45,32 +51,34 @@ CODE    SEGMENT
 			;	INT 	21H
 			
 			;affichage du menu			
+DEBmenu:			
 				MOV         AH,9
 				LEA         DX,_main_menu
 				INT         21H
 			;On choisit l'opération a effectuer :
 				MOV         AH,1 										;Ici : 1 car on ne demande qu'un seul caracère qui est un nombre
 				INT         21H
-				CALL        RETURN
+				CALL        RETURN_MAIN
 			;Puis on teste la selection pour vérifier que l'utilisateur n'entre pas n'importe quoi ._.
 		_p_decimal:
 				CMP         AL,'1'										;Si le nombre entré est > 1
 				JNE         _p_hexadecimal						            ;On va à l'étiquette du menu suivante
-				;INCLUDE decimal.asm
+				INCLUDE decimal.asm
 				;INCLUDE     D:\Projet assembleur\double.asm
 				;MOV     AH,9
 				;LEA     DX, _nope
-				INT     21h
+				;INT     21h
 		_p_hexadecimal:
 				CMP         AL,'2'										;Si le nombre entré est > 2
 				JNE         _p_main_menu                						;On va à l'étiquette du menu suivante
-				;%INCL
+				INCLUDE HEXA.ASM
 				;CALL       decimal.asm
 				;RET				
 	
 		_p_end:
-			MOV			AX,4C00H ;Retour au dos
-			INT			21H
+			RET
+			;MOV			AX,4C00H ;Retour au dos
+			;INT			21H
 	PROG_MAIN  	ENDP
 CODE ENDS
 END PROG_MAIN

@@ -3,7 +3,7 @@
 
  00000H 003FFH 00400H PILE_D             PILE_D
  00400H 006B4H 002B5H DONNEE_D           
- 006C0H 0092AH 0026BH CODE_D             
+ 006C0H 0094AH 0028BH CODE_D             
 
-Program entry point at 006C:020B
+Program entry point at 006C:0224
 

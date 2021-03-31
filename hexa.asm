@@ -33,7 +33,7 @@ DONNEE  ENDS
 
 CODE    SEGMENT
 ;-----------------------------------------------------------------------PROCEDURE DE RETOUR A LA LIGNE	
-	RETURN PROC NEAR
+	RETURN PROC FAR
 		PUSH        AX													;save the register value, insert in order
 		PUSH        DX													;save the register value, insert in order
 		MOV         DL,10
@@ -49,7 +49,7 @@ CODE    SEGMENT
 ; Code hexa touche entrée = F0H
 ; Sinon la valeur de la touche est entrée
 
-	SCANHEX PROC NEAR
+	SCANHEX PROC FAR
 		ASSUME CS:CODE,DS:DONNEE,SS:PILE
 		
 		_eti_getch: 													;on définit l'étiquette "getch" (obtenir un caractère saisit au clavier)
@@ -98,7 +98,7 @@ CODE    SEGMENT
 ;-----------------------------------------------------------------------
 ;Stockage du résultat de la fonction dans BX
 ;Utilise AX via la fonction SCANHEX
-	SCANINT PROC NEAR
+	SCANINT PROC FAR
 		PUSH		AX													;Sauvegarde le registre d'AX dans la pile
 		PUSH		CX													;Sauvegarde le registre de CX dans la pile
 		PUSH		DX													;Sauvegarde le registre de DX dans la pile	
@@ -132,7 +132,7 @@ CODE    SEGMENT
 	SCANINT ENDP
 	
 	;Entrée dans DX
-	PRINTINT PROC NEAR
+	PRINTINT PROC FAR
 			PUSH        AX 												;On sauvegarde le contenu des registres AX, BX, CX et DX
 			PUSH        BX
 			PUSH        CX
@@ -176,7 +176,7 @@ CODE    SEGMENT
 
 ;-----------------------------------------------------------------------PROGRAMME ADDITION	
 
-	PROG_ADDITION PROC NEAR
+	PROG_ADDITION PROC FAR
 		PUSH        AX 													;Sauvegarder les valeurs des registres AX, BX, CX, DX, dans la pile
 		PUSH        BX
 		PUSH        CX
@@ -219,7 +219,7 @@ CODE    SEGMENT
 
 ;-----------------------------------------------------------------------PROGRAMME SOUSTRACTION
 	
-	PROG_SOUSTRACTION PROC NEAR
+	PROG_SOUSTRACTION PROC FAR
 		PUSH 	AX  													;Sauvegarder les valeurs des registres AX, BX, CX, DX, dans la pile
 		PUSH 	BX
 		PUSH	CX
@@ -267,7 +267,7 @@ CODE    SEGMENT
 		
 ;-----------------------------------------------------------------------PROGRAMME MULTIPLICATION
 
-	PROG_MULTIPLICATION PROC NEAR
+	PROG_MULTIPLICATION PROC FAR
 		;La source de la multiplication est : dx:ax = ax * sourcee
 		PUSH	 AX 													;On sauvegarde les valeurs des registres AX,BX,CX et DX
 		PUSH 	BX
@@ -309,7 +309,7 @@ CODE    SEGMENT
 	
 ;-----------------------------------------------------------------------PROGRAMME DIVISION
 
-	PROG_DIVISION PROC NEAR
+	PROG_DIVISION PROC FAR
 		;DIV SRC -> DX:AX / SRC >> q = AX , r = DX
 		PUSH 	AX 													;On sauvegarde les valeurs des registres AX, BX, CX et DX
 		PUSH 	BX
@@ -364,7 +364,7 @@ CODE    SEGMENT
 	
 ;-----------------------------------------------------------------------PROGRAMME PRINCIPAL
 	
-	PROG PROC NEAR
+	PROG PROC FAR
 		ASSUME CS:code,DS:DONNEE,SS:pile
 		; Initialisation
 			MOV	        AX,DONNEE 										;On initialise le segment DONNEE
