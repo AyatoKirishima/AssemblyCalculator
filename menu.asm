@@ -15,7 +15,7 @@ _fish		DB		'			  ___======____=---=)',10,'			/T            \_--===)',10,'			L \ 
 	_main_menu			DB	    ' 1: Decimal',10,' 2: Hexadecimal ',10,' Taper le numero de votre operation: $',10
 	_nope				DB		'nope'
 	;%INCL
-	;INCLUDE decimal.asm
+	INCLUDE decimal.asm
 DONNEE  ENDS
 
 CODE    SEGMENT
@@ -65,7 +65,8 @@ CODE    SEGMENT
 				CMP         AL,'2'										;Si le nombre entré est > 2
 				JNE         _p_main_menu                						;On va à l'étiquette du menu suivante
 				;%INCL
-				;CALL       subprogram_decimal							
+				CALL       subprogram_decimal
+				RET							
 	
 		_p_end:
 			MOV			AX,4C00H ;Retour au dos
