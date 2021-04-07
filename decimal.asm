@@ -29,19 +29,6 @@ DONNEE_D segment
 	ok		        DB 	    13
 	del		        DB	    8
 	delete	        DB	    8,' ',8,'$'
-
-	_title_1		DB	    'Calculatrice format hexadecimal',10,'$'
-	_menu			DB	    ' 1:(+) 2:(-) 3:(x) 4:(/) ',10,' Tapez le numero de votre operation: $'
-	
-	_qn1			DB  	'   n1 = $'
-	_qn2			DB  	'   n2 = $'
-	_r_add			DB  	'   n1 + n2 = $'
-	_r_sub			DB  	'   n1 - n2 = $'
-	_r_mul			DB  	'   n1 x n2 = $'
-	_r_div			DB  	'   n1 / n2 = $'
-	_error          DB      10,' Erreur division par 0 $',10							
-	_quit			DB  	10,'  > Quitter (o/n)? $'
-	_ascii 			DB	    '0123456789ABCDEF'
 DONNEE_D ENDS
 
 
