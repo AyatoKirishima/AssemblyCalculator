@@ -1,3 +1,5 @@
+[![forthebadge](https://forthebadge.com/images/badges/it-works-why.svg)](https://forthebadge.com)
+
 # AssemblyCalculator
 
 Programme de Projet d'assembleur
